@@ -1,18 +1,14 @@
-# Use fzf as general-purpose command-line fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+### Work setup specific ###
 export PATH="$HOME/.bin:$PATH"
-
-# Put postgresql 11 in path for psql
+# add postgresql 11 in path for psql
 export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
 
-# Evals...
-# # hook in direnv for env vars; https://direnv.net
-# eval "$(direnv hook zsh)"
-# # use nodenv, nvm was causing a lot of trouble
-# eval "$(nodenv init -)"
+# hook in direnv for env vars; https://direnv.net
+eval "$(direnv hook zsh)"
+### Work setup specific ###
 
-### Find connection on port
+### Convenience
+# returns details for which process is using port, then can: kill -9 <PID>
 function whatsonport() {
   if [ "$1" != "" ]
   then
@@ -21,4 +17,6 @@ function whatsonport() {
     echo "Please provide port number"
   fi
 }
-# returns details for which process is using port, then can: kill -9 <PID>
+
+# Use fzf as general-purpose command-line fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
