@@ -1,11 +1,10 @@
-# export PATH="$HOME/.bin:$PATH"
-# # Put postgresql 9.4 in path for psql
-# export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+# Use fzf as general-purpose command-line fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# # Add asdf to path, for some reason paths are different on my system than what
-# # docs have
-# . $HOME/.asdf/asdf.sh
-# . $HOME/.asdf/completions/asdf.bash
+export PATH="$HOME/.bin:$PATH"
+
+# Put postgresql 11 in path for psql
+export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
 
 # Evals...
 # # hook in direnv for env vars; https://direnv.net
@@ -23,6 +22,3 @@ function whatsonport() {
   fi
 }
 # returns details for which process is using port, then can: kill -9 <PID>
-
-# expand limit for deploying
-ulimit -n 4864
