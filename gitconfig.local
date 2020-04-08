@@ -1,0 +1,14 @@
+[user]
+  name = fenjiot
+  email = fenjiot@gmail.com
+
+[alias]
+  slap = "log --oneline --decorate --all --graph"
+  slapem = "log --oneline --decorate --all --graph --no-merges"
+
+[format]
+  # git log uses --pretty format by default, so this changes the default
+  # format. It looks like this:
+  # 4436819 (HEAD, origin/master, master) Short commit message [Gabe
+  # Berke-Williams, 23 hours ago]
+  pretty = %C(magenta reverse)%h%Creset%Cgreen%d %Creset%C(blue)%s %C(magenta)[%an, %cr]

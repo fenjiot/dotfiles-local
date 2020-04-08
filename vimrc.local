@@ -1,0 +1,105 @@
+""" default to jellybeans colorscheme
+colorscheme jellybeans
+
+""" For hybrid line numbers on the left
+set relativenumber
+set number
+
+""" set highlight all matching when doing search
+set hlsearch
+
+""" For the emojis in the bottom bar
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste', 'you_are_awesome' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
+      \   'you_are_awesome': '%{emoji#for("tada") . " " . emoji#for("sparkles")}',
+      \   'readonly': '%{&filetype=="help" ? "" : &readonly ? emoji#for("lock") :""}',
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())' },
+      \ }
+
+""" Ack use the silver searcher
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" use ! and make shortcut to ' ' + a
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+""" Remap space+a to activate silver_searcher
+" nnoremap <leader>a :Ag<space>
+
+""" vim-prettier configs
+" https://github.com/prettier/vim-prettier#overwrite-default-prettier-configuration
+" print spaces between brackets " Prettier default: true
+let g:prettier#config#bracket_spacing = 'false'
+
+""" Toggle zoom of current split " from christoomey
+function! s:ToggleZoomSplit()
+  if exists('g:split_maximized')
+    unlet g:split_maximized
+    wincmd =
+  else
+    "" Expand vertically and horizaontally
+    wincmd _
+    wincmd |
+    let g:split_maximized = 1
+  endif
+endfunction
+command! ToggleZoomSplit call <sid>ToggleZoomSplit()
+nnoremap <Leader>- :ToggleZoomSplit<cr>
+
+""" customize colorcolumn background color
+highlight colorcolumn ctermbg=darkred ctermfg=cyan
+
+"" Make Explorer better more like nerd tree
+let g:netrw_liststyle=3
+
+""" Use handlebars syntastic
+let g:syntastic_filetype_map = {'html.handlebars': 'handlebars'}
+
+""" Copied from Chris Toomey
+""" https://github.com/christoomey/dotfiles/blob/master/vim/rcplugins/fzf
+let g:fzf_files_options =
+  \ '--reverse ' .
+  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+nnoremap <C-p> :Files<cr>
+let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
+
+let branch_files_options = { 'source': 'branch_files' }
+let uncommited_files_options = { 'source': 'branch_files -w' }
+
+let s:diff_options =
+  \ '--reverse ' .
+  \ '--preview "(mdiff {} | tail -n +5 || cat {}) 2> /dev/null | head -'.&lines.'"'
+command! BranchFiles call fzf#run(fzf#wrap('BranchFiles',
+      \ extend(branch_files_options, { 'options': s:diff_options }), 0))
+command! UncommitedFiles call fzf#run(fzf#wrap('UncommitedFiles',
+      \ extend(uncommited_files_options, { 'options': s:diff_options }), 0))
+nnoremap <silent> <leader>gp :BranchFiles<cr>
+nnoremap <silent> <leader>GP :UncommitedFiles<cr>
+
+nnoremap <leader>ga :Files app/<cr>
+nnoremap <leader>gm :Files app/models/<cr>
+nnoremap <leader>gv :Files app/views/<cr>
+nnoremap <leader>gc :Files app/controllers/<cr>
+nnoremap <leader>gy :Files app/assets/stylesheets/<cr>
+nnoremap <leader>gj :Files app/assets/javascripts/<cr>
+nnoremap <leader>gs :Files spec/<cr>
+
+function! s:all_help_files()
+  return join(map(split(&runtimepath, ','), 'v:val ."\/doc\/tags"'), ' ')
+endfunction
+let full_help_cmd = "cat ". s:all_help_files() ." 2> /dev/null \| grep -i '^[a-z]' \| awk '{print $1}' \| sort"
+
+nnoremap <silent> <leader>he :Helptags<cr>
+""" END copy from Chris
+

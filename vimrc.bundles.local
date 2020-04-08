@@ -1,0 +1,20 @@
+Plug 'airblade/vim-gitgutter'
+Plug 'elixir-lang/vim-elixir'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/vim-emoji'
+Plug 'leafgarland/typescript-vim'
+Plug 'mileszs/ack.vim'
+Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'mxw/vim-jsx'
+Plug 'nanotech/jellybeans.vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'rhysd/vim-color-spring-night'
+Plug 'scwood/vim-hybrid'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-liquid'

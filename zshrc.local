@@ -1,0 +1,28 @@
+# export PATH="$HOME/.bin:$PATH"
+# # Put postgresql 9.4 in path for psql
+# export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+
+# # Add asdf to path, for some reason paths are different on my system than what
+# # docs have
+# . $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/completions/asdf.bash
+
+# Evals...
+# # hook in direnv for env vars; https://direnv.net
+# eval "$(direnv hook zsh)"
+# # use nodenv, nvm was causing a lot of trouble
+# eval "$(nodenv init -)"
+
+### Find connection on port
+function whatsonport() {
+  if [ "$1" != "" ]
+  then
+    sudo lsof -i:$1
+  else
+    echo "Please provide port number"
+  fi
+}
+# returns details for which process is using port, then can: kill -9 <PID>
+
+# expand limit for deploying
+ulimit -n 4864

@@ -1,0 +1,44 @@
+# more intuitive keybindings for splitting
+bind \\ split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Reload tmux.conf with prefix-r
+bind C-r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
+
+bind c new-window -c "#{pane_current_path}"
+
+# Simplify status bar display. Uses Goles/Battery script
+set -g status-left '[#S]'
+set -g status-right "%I:%M %p "
+
+# Make C-j display a selectable list of sessions
+bind C-j choose-tree
+
+# resize splits using arrow keys
+unbind Right
+bind Right resize-pane -R 8
+unbind Left
+bind Left resize-pane -L 8
+unbind Up
+bind Up resize-pane -U 4
+unbind Down
+bind Down resize-pane -D 4
+
+# reset leader "ctrl-a" to "ctrl-s"
+unbind C-a
+set -g prefix C-s
+
+# Setup 'v' to begin selection as in Vim
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -T copy-mode-vi 'Enter'
+bind-key -T copy-mode-vi 'Enter' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+# fix vim copy to clipboard failure tmux + vim after upgrade to macOS Sierra
+set -g default-shell $SHELL
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"
+
+# macOS sierra; keep track of SSH_AGENT, etc from parent environment
+set -g update-environment -r
