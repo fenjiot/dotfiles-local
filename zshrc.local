@@ -4,7 +4,7 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
 
 # hook in direnv for env vars; https://direnv.net
-eval "$(direnv hook zsh)"
+type direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 ### Work setup specific ###
 
 ### Convenience
