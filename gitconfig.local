@@ -5,6 +5,7 @@
 [alias]
   slap = "log --oneline --decorate --all --graph"
   slapem = "log --oneline --decorate --all --graph --no-merges"
+  full-history = "log --full-history --"
 
 [format]
   # git log uses --pretty format by default, so this changes the default
@@ -12,3 +13,6 @@
   # 4436819 (HEAD, origin/master, master) Short commit message [Gabe
   # Berke-Williams, 23 hours ago]
   pretty = %C(magenta reverse)%h%Creset%Cgreen%d %Creset%C(blue)%s %C(magenta)[%an, %cr]
+
+[pull]
+  rebase = false

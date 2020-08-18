@@ -4,5 +4,6 @@ alias be="bundle exec"
 # Kubernetes
 alias ke="kubectl exec"
 
-# EzCater
-alias ezk='docker run --rm -v "$HOME/.aws:/root/.aws:ro" -v "$HOME/.kube:/root/.kube" -v "$(pwd)/service.yml:/usr/src/gem/service.yml:ro" -it ezcater-production.jfrog.io/ezk-gem ezk'
+# eztilt
+alias eztilt="~/workspace/ezcater/eztilt/eztilt"
+alias ezrun="~/workspace/ezcater/eztilt/run"
