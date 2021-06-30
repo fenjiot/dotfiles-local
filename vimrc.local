@@ -25,17 +25,14 @@ let g:lightline = {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())' },
       \ }
 
-""" Ack use the silver searcher
+""" Ack use the silver searcher (ag) | --vimgrep will  report every match on the line
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" use ! and make shortcut to ' ' + a
+" [show all results](https://github.com/mileszs/ack.vim#i-dont-want-to-jump-to-the-first-result-automatically)
 cnoreabbrev Ack Ack!
+" use ! and make shortcut to ' ' + a
 nnoremap <Leader>a :Ack!<Space>
-
-""" Remap space+a to activate silver_searcher
-" nnoremap <leader>a :Ag<space>
 
 """ vim-prettier configs
 " https://github.com/prettier/vim-prettier#overwrite-default-prettier-configuration
@@ -102,4 +99,3 @@ let full_help_cmd = "cat ". s:all_help_files() ." 2> /dev/null \| grep -i '^[a-z
 
 nnoremap <silent> <leader>he :Helptags<cr>
 """ END copy from Chris
-

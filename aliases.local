@@ -5,5 +5,5 @@ alias be="bundle exec"
 alias ke="kubectl exec"
 
 # eztilt
-alias eztilt="~/workspace/ezcater/eztilt/eztilt"
-alias ezrun="~/workspace/ezcater/eztilt/run"
+alias eztilt="~/code/work/eztilt/eztilt"
+alias run="~/code/work/eztilt/run"
