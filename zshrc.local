@@ -1,1 +1,12 @@
+# Returns details for which process is using port, then can: kill -9 <PID>
+function whatsonport {
+  if [ "$1" != "" ]
+  then
+    lsof -i:$1
+  else
+    echo "Please provide port number"
+  fi
+}
+
+# Use fzf as general-purpose command-line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

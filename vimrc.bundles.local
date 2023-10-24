@@ -1,6 +1,7 @@
 Plug 'airblade/vim-gitgutter'
 Plug 'elixir-lang/vim-elixir'
 Plug 'itchyny/lightline.vim'
+" Plug 'github/copilot.vim'
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/vim-emoji'
 Plug 'leafgarland/typescript-vim'

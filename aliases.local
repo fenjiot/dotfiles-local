@@ -7,3 +7,6 @@ alias ke="kubectl exec"
 # eztilt
 alias eztilt="~/code/work/eztilt/eztilt"
 alias run="~/code/work/eztilt/run"
+
+# system
+alias sys_temp="sudo powermetrics --samplers smc | grep -i \"CPU die temperature\""
